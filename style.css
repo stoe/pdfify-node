@@ -1,0 +1,30 @@
+body {
+    font-family: "Source Sans Pro";
+}
+
+.letterhead {
+    font-family: "Apex New";
+    font-weight: lighter;
+    font-size: 32px;
+    padding-bottom: 20px;
+}
+
+h1.letterhead {
+  border-bottom: none;
+}
+
+.letterhead svg {
+    position: absolute;
+}
+
+.letterhead span {
+    position: relative;
+    left: 48px;
+    top: 10px;
+    font-weight: 400;
+}
+
+.letterhead em {
+    font-style: normal;
+    font-weight: 600;
+}
