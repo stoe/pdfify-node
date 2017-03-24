@@ -1,0 +1,29 @@
+language: node_js
+node_js:
+  - '7'
+  - '6'
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+  slack:
+    template:
+      - "%{repository_slug}@%{branch} (%{commit}): %{result} in %{duration}"
+      - "%{build_url}"
+    rooms:
+      secure: chOLjzqTBDVwMGAns/Svz+ZOfvoXAbxuZdWjGhJqAxFCjhDWVVq83/Fz6sYbpfpv6wM5/X7xLussTDqayqaLd/yNTMS82AELbA3rU+KuXEZFu87Jpyzw9llwfW1FIb2r8SMsNL9RBfbG4nT0kj+whCDISp6wWi9QsaGtbCwIJzPKAxFTYtG7NpDVYmfGuyNEUhxIJYeHFczjaGev66TTrIPJyOtWPBv6gOv8kbASERJKz7SuWxQZbPcVY2Hi3b6WRVuBzJGMhfDeXB6hoarDxkn7NG/sLDE3tJja903cGsF9wh0YlKrmwG8R/GoVETY5lu/J4dcW3pR5DPRFeLRsM/eQ8uA3982qEOW472kUtUiV0ND+SOrf5wwi9pksiOwPMAFARUfQshE9dI3Q5j1oNc3eZhiYrPDsg2o88UlO6sCmvNXlxVa/4oaku/piaqOdIGdnXQYA9RFyrGpFZJyursE6TsJAsLBHjD4aSZL4yvcwNye4+ZkMUqSGPZf17lQq7tXi+aib80qOBLhFrl1c7I3QuIGG03gXIz5zcDTduY0rwmG2ET2SVSlmNqo4IxUhA5mQCKRFEFn7gqx1FAr3J5IJLn8IIrLu1MlaIhfmqgoR6YUhASxP9M/D/n16u4vv1GUFvRzlg9/R/pw+21ZZ4Q2+Erw5Apyhx5mueWYVE34=
+    on_success: change
+    on_failure: always
+
+env:
+  global:
+    secure: KK7HbyD1IpzgZNjcDeO7HqNCAp4+Rxzga2qV+7tkfXMi/etnjYfV978WbKuLt7ZdVEokb6T94HuagbooYwOenzHiUDDQnQq2u93pwG8kh06nksh9VDK5MVrikgebkRI73jpA++1hX7ow/TLD2CZVVJuGgr1GmsQlO8BcrwNfUHUphxBRw41xd3iMK9WKYIlpmroOHxZIo1Lt47P7uUD59wUqok26RF56EepuwZAENAKz90Sg+VlVrIiHQpKdRNpve7K7azZRKShvTsbC9vKbR995g6eksXY0Po3Oxp512X2WSuuJi7309i7gPH26YTk8JB7HJUKOPRsyhNjcjHliFI31TKOmEK3Gh+6c/YaE5aJ1MqCUQRf9GUmRwKBpPifUui49IFEcsMa5u3WvewEcfHPBbRiq57mbp9NLxjaN2qCV/J1AB16B32rNxn6H4W03Q6f1MyBK0uIZikCcX58shR2xPwpDhQbdVjLzcbdNUaC1Ev+QrcEEZ95FvKskh5QVby9SUpy87401nUWEBfih0SDVa0e2Cg077EwEgfIgzAKAy8VLsAgs+6p8QLEdOZQQybZkWM7sgxSZH/lDOa+unMbjxjXqsiWxKNsbL1RnHbpXYulqy1NSy3AIa1pkbmDbmuV8KfytW6jX6hUvVvL0UAuUKzalOcseIC/xCDObJEY=
+
+cache:
+  directories:
+    - node_modules
+
+install: 'npm install'
+before_script: 'snyk auth $SNYK_TOKEN'
+script: 'npm test'
