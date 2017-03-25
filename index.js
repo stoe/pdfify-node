@@ -31,7 +31,7 @@ const destination = cli.input[1] ||
   source.slice(0, source.indexOf('.md')) + '.pdf';
 
 const debug = cli.flags.debug || false;
-const header = cli.flags.header || './header.hbs';
+const header = cli.flags.header || null;
 const height = cli.flags.height || null;
 const style = cli.flags.style || './style.css';
 
