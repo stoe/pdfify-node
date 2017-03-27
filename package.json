@@ -27,7 +27,8 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "mdpdf": "^1.1.1",
-    "meow": "^3.7.0"
+    "meow": "^3.7.0",
+    "opn": "^4.0.2"
   },
   "devDependencies": {
     "ava": "^0.18.2",
