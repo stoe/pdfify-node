@@ -28,3 +28,18 @@ h1.letterhead {
     font-style: normal;
     font-weight: 600;
 }
+
+hr {
+  border: 0 !important;
+  height: 0 !important;
+  background: #fff;
+  page-break-after: always;
+}
+
+@page {
+    counter-increment: page;
+    counter-reset: page 1;
+    @top-right {
+        content: "Page " counter(page) " of " counter(pages);
+    }
+}
