@@ -5,6 +5,7 @@ const path = require('path');
 const meow = require('meow');
 const chalk = require('chalk');
 const mdpdf = require('mdpdf');
+const opn = require('opn');
 
 const cli = meow(
   `
@@ -15,6 +16,7 @@ const cli = meow(
     --debug   When this is set the intermediate HTML will be saved into a file, the value of this field should be the full path to the destination HTML.
     --header  A full path to a the Handlebars (.hbs) file which will be your header. (otional)
     --height  The height of the header section in mm, this might take some fiddling to get just right.
+    --open    Open the generated PDF after creatining it.
     --style   A full path to a single css stylesheet which is applied last to the PDF. (otional)
 
   ${chalk.bold('Examples')}
@@ -33,6 +35,7 @@ const destination = cli.input[1] ||
 const debug = cli.flags.debug || false;
 const header = cli.flags.header || null;
 const height = cli.flags.height || null;
+const open = cli.flags.open || false;
 const style = cli.flags.style || './style.css';
 
 const options = {
@@ -65,6 +68,10 @@ mdpdf
   .convert(options)
   .then(pdfPath => {
     console.log(`PDF created successfully at: ${chalk.blue(pdfPath)}`);
+
+    if (open) {
+      opn(pdfPath).catch(err => console.log(err));
+    }
   })
   .catch(err => {
     console.error(err);
