@@ -70,7 +70,9 @@ mdpdf
     console.log(`PDF created successfully at: ${chalk.blue(pdfPath)}`);
 
     if (open) {
-      opn(pdfPath).catch(err => console.log(err));
+      opn(pdfPath, {
+        wait: false
+      }).catch(err => console.log(err));
     }
   })
   .catch(err => {
