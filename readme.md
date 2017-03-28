@@ -18,7 +18,7 @@ Usage
     $ pdfify <source> [<destination>] [options]
 
 Options
-  --debug   When set creates an additional `.html` file.
+  --debug   When set creates an additional `.hbs` file.
   --header  Full path to the header file (`html`|`hbs`).
   --height  Header height in millimeter.
   --style   Full path to an additional style file (`css`).
