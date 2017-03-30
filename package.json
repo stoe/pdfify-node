@@ -22,7 +22,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "snyk test && xo && ava --verbose",
+    "test": "xo && ava --verbose",
     "snyk-protect": "snyk protect",
     "prepublish": "npm run snyk-protect",
     "scss-compile": "node-sass --include-path scss --output-style compressed scss/style.scss assets/style.css",
