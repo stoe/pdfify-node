@@ -1,0 +1,75 @@
+@import "../node_modules/highlight.js/styles/default";
+@import "../node_modules/highlight.js/styles/github";
+@import "github-markdown-css";
+
+body {
+  font-family: "Source Sans Pro", serif;
+}
+
+.markdown-body {
+  font-size: 11px;
+
+  hr {
+    border: 0 !important;
+    height: 0 !important;
+    background: #ffffff;
+    page-break-after: always;
+  }
+
+  img.emoji-img.emoji {
+    max-width: 11px;
+    max-height: 11px;
+    vertical-align: middle;
+  }
+
+  pre, pre code {
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    width: 100%;
+    display: block;
+  }
+}
+
+.letterhead {
+  font-family: "Apex New", sans-serif;
+  font-weight: lighter;
+  font-size: 32px;
+  padding-bottom: 20px;
+
+  svg {
+    position: absolute;
+  }
+
+  span {
+    position: relative;
+    left: 48px;
+    top: 10px;
+    font-weight: 400;
+  }
+
+  em {
+    font-style: normal;
+    font-weight: 600;
+  }
+}
+
+h1.letterhead {
+  border-bottom: none;
+  margin: 10px 0;
+}
+
+div.footer {
+  font-family: "Apex New", sans-serif;
+  font-size: 10px;
+  line-height: 10px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+
+  span.page {
+  }
+
+  span.pages {
+  }
+}

@@ -3,7 +3,7 @@ version: v1.7.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:concat-stream:20160901':
-    - 'mdpdf > html-pdf > phantomjs-prebuilt > extract-zip > concat-stream':
+    - 'html-pdf > phantomjs-prebuilt > extract-zip > concat-stream':
         reason: None given
-        expires: '2017-04-23T09:12:25.243Z'
+        expires: '2017-04-29T13:01:38.421Z'
 patch: {}

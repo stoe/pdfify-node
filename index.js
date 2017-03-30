@@ -2,80 +2,82 @@
 'use strict';
 
 const path = require('path');
-const meow = require('meow');
 const chalk = require('chalk');
-const mdpdf = require('mdpdf');
+const meow = require('meow');
 const opn = require('opn');
+const PDFify = require('./pdfify');
 
 const cli = meow(
-  `
-  ${chalk.bold('Usage')}
-    ${chalk.blue('$ pdfify <source> [<destination>] [options]')}
+  `  ${chalk.bold('Usage')}
+    $ pdfify <source> [<destination>] [options]
 
   ${chalk.bold('Options')}
-    --debug   When this is set the intermediate HTML will be saved into a file, the value of this field should be the full path to the destination HTML.
-    --header  A full path to a the Handlebars (.hbs) file which will be your header. (otional)
-    --height  The height of the header section in mm, this might take some fiddling to get just right.
-    --open    Open the generated PDF after creatining it.
-    --style   A full path to a single css stylesheet which is applied last to the PDF. (otional)
+    --debug   When this is set the intermediate HTML will be saved into a file.
+    --header  A full path to a the Handlebars (.hbs|.html) file which will be your header.
+    --height  The height of the header section in mm. ${chalk.dim('Might take some fiddling to get just right')}.
+    --open    Open the generated PDF.
+    --style   A full path to a single css stylesheet which is applied last to the PDF.
 
   ${chalk.bold('Examples')}
-    ${chalk.dim('$ pdfify foo.md')}
-    ${chalk.dim('$ pdfify foo.md foo.pdf --header header.hbs --height 42 --style style.css')}
+    $ pdfify foo.md
+    $ pdfify foo.md foo.pdf --header header.hbs --height 42 --style style.css
 `,
   {
-    alias: {}
+    alias: {
+      d: 'debug',
+      o: 'open',
+      s: 'style'
+    }
   }
 );
 
 const source = cli.input[0];
-const destination = cli.input[1] ||
-  source.slice(0, source.indexOf('.md')) + '.pdf';
+const destination = source ?
+  cli.input[1] || source.slice(0, source.indexOf('.md')) + '.pdf' :
+  null;
 
-const debug = cli.flags.debug || false;
-const header = cli.flags.header || './header-default.hbs';
+const style = cli.flags.style || null;
+const header = cli.flags.header || './assets/header-default.hbs';
 const height = cli.flags.height || null;
-const open = cli.flags.open || false;
-const style = cli.flags.style || './style.css';
+const debug = cli.flags.debug || false;
 
-const options = {
-  ghStyle: true,
-  defaultStyle: true,
+if (!source) {
+  cli.showHelp();
+  process.exitCode = 1;
+}
+
+const pdfify = new PDFify({
   source: path.resolve(source),
   destination: path.resolve(destination),
-  assetDir: path.dirname(path.resolve(source)),
-  styles: path.resolve(style),
-  header: path.resolve(header),
+  style: style ? path.resolve(style) : null,
+  header: header ? path.resolve(header) : null,
+  height,
   debug: debug ?
-    destination.slice(0, destination.indexOf('.pdf')) + '.html' :
-    null,
-  pdf: {
-    format: 'A4',
-    base: path.join('file://', __dirname, 'node_modules', 'mdpdf', 'assets'),
-    header: {
-      height: height + 'mm'
-    },
-    border: {
-      top: '10mm',
-      left: '10mm',
-      bottom: '10mm',
-      right: '10mm'
-    }
-  }
-};
+    path.resolve(destination.slice(0, destination.indexOf('.pdf')) + '.html') :
+    null
+});
 
-mdpdf
-  .convert(options)
-  .then(pdfPath => {
-    console.log(`PDF created successfully at: ${chalk.blue(pdfPath)}`);
+pdfify
+  .makeHTML()
+  .then(html => {
+    pdfify.makePDF(html).then(pdf => {
+      console.log(`PDF created at:        ${chalk.blue(pdf)}`);
 
-    if (open) {
-      opn(pdfPath, {
-        wait: false
-      }).catch(err => console.log(err));
-    }
+      if (cli.flags.open) {
+        opn(pdf, {
+          wait: false
+        }).catch(err => console.log(err));
+      }
+    });
   })
   .catch(err => {
-    console.error(err);
-    process.exitCode = 1;
+    console.log(
+      `
+${cli.help}
+
+${chalk.dim('------------------------------------------------------------')}
+
+${err.message}
+`
+    );
   });

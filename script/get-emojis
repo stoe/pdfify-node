@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+'use strict';
+
+const path = require('path');
+const gh = require('gh-got');
+const writeJsonFile = require('write-json-file');
+
+gh('emojis').then(res => {
+  const emojis = res.body;
+  const file = path.resolve(__dirname, '../data/emojis.json');
+
+  writeJsonFile(file, emojis, {
+    indent: 2,
+    sortKeys: true
+  })
+    .then(res => {
+      console.log('done.');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});

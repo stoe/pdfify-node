@@ -1,4 +1,4 @@
-# pdfify-node [![Build Status](https://travis-ci.org/stoe/pdfify-node.svg?branch=master)](https://travis-ci.org/stoe/pdfify-node)
+# pdfify-node [![Build Status](https://travis-ci.org/stoe/pdfify-node.svg?branch=master)](https://travis-ci.org/stoe/pdfify-node) [![Known Vulnerabilities](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2/badge.svg)](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2)
 
 > Convert markdown files to PDF.
 
@@ -15,13 +15,14 @@ _Requires [Node.js](https://nodejs.org) 6+._
 
 ```shell
 Usage
-    $ pdfify <source> [<destination>] [options]
+  $ pdfify <source> [<destination>] [options]
 
 Options
-  --debug   When set creates an additional `.html` file.
-  --header  Full path to the header file (`html`|`hbs`).
-  --height  Header height in millimeter.
-  --style   Full path to an additional style file (`css`).
+  --debug   When this is set the intermediate HTML will be saved into a file.
+  --header  A full path to a the Handlebars (.hbs|.html) file which will be your header.
+  --height  The height of the header section in mm. Might take some fiddling to get just right.
+  --open    Open the generated PDF.
+  --style   A full path to a single css stylesheet which is applied last to the PDF.
 
 Examples
   $ pdfify foo.md
