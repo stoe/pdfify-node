@@ -1,4 +1,4 @@
-# pdfify-node [![Build Status](https://travis-ci.org/stoe/pdfify-node.svg?branch=master)](https://travis-ci.org/stoe/pdfify-node)
+# pdfify-node [![Build Status](https://travis-ci.org/stoe/pdfify-node.svg?branch=master)](https://travis-ci.org/stoe/pdfify-node) [![Known Vulnerabilities](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2/badge.svg)](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2)
 
 > Convert markdown files to PDF.
 
