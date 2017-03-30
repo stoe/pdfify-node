@@ -1,6 +1,6 @@
 {
   "name": "pdfify-node",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Convert markdown files to PDF.",
   "keywords": [],
   "author": {
@@ -25,7 +25,7 @@
     "test": "xo && ava --verbose",
     "snyk-protect": "snyk protect",
     "prepublish": "npm run snyk-protect",
-    "scss-compile": "node-sass --include-path scss --output-style compressed scss/style.scss assets/style.css",
+    "scss-compile": "node-sass --include-path scss --output-style compressed ./scss/style.scss ./assets/style.css",
     "postinstall": "npm run scss-compile"
   },
   "dependencies": {
