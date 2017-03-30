@@ -2,7 +2,6 @@
 
 import fs from 'fs';
 import path from 'path';
-import Promise from 'bluebird';
 import test from 'ava';
 import execa from 'execa';
 
@@ -65,12 +64,12 @@ PDF created at:        ${t.context.testPdf}`
 test.serial('source + css', async t => {
   t.plan(1);
 
-  const {stdout} = await execa.shell(
+  await execa.shell(
     `node ./index.js ${t.context.testMd} --style ${t.context.testCss} --debug`
   );
   const html = fs.readFileSync(t.context.testHtml, 'utf8');
 
-  t.truthy(html.indexOf('color: red !important;') > 0);
+  t.true(html.indexOf('color: red !important;') > 0, true);
 });
 
 test.serial('source + destination', async t => {
@@ -109,10 +108,10 @@ PDF created at:        ${t.context.fooPdf}`
 test.serial('source + destination + css', async t => {
   t.plan(1);
 
-  const {stdout} = await execa.shell(
+  await execa.shell(
     `node ./index.js ${t.context.testMd} ${t.context.fooPdf} --style ${t.context.testCss} --debug`
   );
   const html = fs.readFileSync(t.context.fooHtml, 'utf8');
 
-  t.truthy(html.indexOf('color: red !important;') > 0);
+  t.true(html.indexOf('color: red !important;') > 0, true);
 });
