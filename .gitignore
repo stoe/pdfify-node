@@ -3,7 +3,6 @@
 header.hbs
 yarn.lock
 assets/style.css
-data/
 
 # Created by https://www.gitignore.io/api/node
 
