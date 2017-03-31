@@ -41,6 +41,7 @@
     "meow": "latest",
     "node-sass": "latest",
     "opn": "latest",
+    "ora": "latest",
     "write-json-file": "latest"
   },
   "devDependencies": {
