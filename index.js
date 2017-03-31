@@ -5,6 +5,7 @@ const path = require('path');
 const chalk = require('chalk');
 const meow = require('meow');
 const opn = require('opn');
+const ora = require('ora');
 const PDFify = require('./pdfify');
 
 const cli = meow(
@@ -57,27 +58,31 @@ const pdfify = new PDFify({
     null
 });
 
+const spinner = ora({
+  text: `creating PDF ${chalk.blue(destination)}`,
+  color: 'blue'
+}).start();
+
 pdfify
   .makeHTML()
   .then(html => {
-    pdfify.makePDF(html).then(pdf => {
-      console.log(`PDF created at:        ${chalk.blue(pdf)}`);
+    pdfify.makePDF(html, spinner).then(pdf => {
+      spinner.succeed(`PDF created at: ${chalk.blue(pdf)}`);
 
       if (cli.flags.open) {
+        spinner.text = `Opening: ${chalk.blue(pdf)}`;
+        spinner.start();
+
         opn(pdf, {
           wait: false
-        }).catch(err => console.log(err));
+        }).then(() => {
+          spinner.succeed();
+        }).catch(err => {
+          spinner.fail(err.message);
+        });
       }
     });
   })
   .catch(err => {
-    console.log(
-      `
-${cli.help}
-
-${chalk.dim('------------------------------------------------------------')}
-
-${err.message}
-`
-    );
+    spinner.fail(err.message);
   });

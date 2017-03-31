@@ -1,6 +1,6 @@
 {
   "name": "pdfify-node",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Convert markdown files to PDF.",
   "keywords": [],
   "author": {
@@ -41,6 +41,7 @@
     "meow": "latest",
     "node-sass": "latest",
     "opn": "latest",
+    "ora": "latest",
     "write-json-file": "latest"
   },
   "devDependencies": {

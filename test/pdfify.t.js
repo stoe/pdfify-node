@@ -36,29 +36,23 @@ test.afterEach(t => {
 });
 
 test.serial('source', async t => {
-  t.plan(2);
+  t.plan(1);
 
-  const {stdout} = await execa('./index.js', [t.context.testMd]);
+  await execa('./index.js', [t.context.testMd]);
   const pdfExists = fs.existsSync(t.context.testPdf);
 
   t.true(pdfExists);
-  t.is(stdout, `PDF created at:        ${t.context.testPdf}`);
 });
 
 test.serial('source + debug', async t => {
-  t.plan(3);
+  t.plan(2);
 
-  const {stdout} = await execa('./index.js', [t.context.testMd, '--debug']);
+  await execa('./index.js', [t.context.testMd, '--debug']);
   const pdfExists = fs.existsSync(t.context.testPdf);
   const htmlExists = fs.existsSync(t.context.testHtml);
 
   t.true(pdfExists);
   t.true(htmlExists);
-  t.is(
-    stdout,
-    `Debug HTML created at: ${t.context.testHtml}
-PDF created at:        ${t.context.testPdf}`
-  );
 });
 
 test.serial('source + css', async t => {
@@ -73,36 +67,23 @@ test.serial('source + css', async t => {
 });
 
 test.serial('source + destination', async t => {
-  t.plan(2);
+  t.plan(1);
 
-  const {stdout} = await execa('./index.js', [
-    t.context.testMd,
-    t.context.fooPdf
-  ]);
+  await execa('./index.js', [t.context.testMd, t.context.fooPdf]);
   const pdfExists = fs.existsSync(t.context.fooPdf);
 
   t.true(pdfExists);
-  t.is(stdout, `PDF created at:        ${t.context.fooPdf}`);
 });
 
 test.serial('source + destination + debug', async t => {
-  t.plan(3);
+  t.plan(2);
 
-  const {stdout} = await execa('./index.js', [
-    t.context.testMd,
-    t.context.fooPdf,
-    '--debug'
-  ]);
+  await execa('./index.js', [t.context.testMd, t.context.fooPdf, '--debug']);
   const pdfExists = fs.existsSync(t.context.fooPdf);
   const htmlExists = fs.existsSync(t.context.fooHtml);
 
   t.true(pdfExists);
   t.true(htmlExists);
-  t.is(
-    stdout,
-    `Debug HTML created at: ${t.context.fooHtml}
-PDF created at:        ${t.context.fooPdf}`
-  );
 });
 
 test.serial('source + destination + css', async t => {

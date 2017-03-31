@@ -70,7 +70,7 @@ module.exports = class PDFify {
     });
   }
 
-  makePDF(html) {
+  makePDF(html, spinner) {
     return new Promise((resolve, reject) => {
       if (!html) {
         reject(new Error('html missing'));
@@ -80,7 +80,13 @@ module.exports = class PDFify {
 
       if (htmlPath) {
         fs.writeFileAsync(htmlPath, html).then(() => {
-          console.log(`Debug HTML created at: ${chalk.blue(htmlPath)}`);
+          // Log html creation
+          spinner.stopAndPersist({
+            symbol: chalk.blue('ℹ'),
+            text: `Debug HTML created at: ${chalk.blue(htmlPath)}`
+          });
+          // Restart the spinner
+          spinner.start();
         });
       }
 
