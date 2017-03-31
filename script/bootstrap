@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+#
+# bootstrap installs things.
+
+cd "$(dirname "$0")/.."
+
+set -e
+
+yarn install
