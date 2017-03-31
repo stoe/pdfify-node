@@ -1,11 +1,9 @@
-# pdfify-node
-
-[![npm version](https://badge.fury.io/js/pdfify-node.svg)](https://badge.fury.io/js/pdfify-node) [![Build Status](https://travis-ci.org/stoe/pdfify-node.svg?branch=master)](https://travis-ci.org/stoe/pdfify-node) [![Known Vulnerabilities](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2/badge.svg)](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2)
+# pdfify-node [![Build Status](https://travis-ci.org/stoe/pdfify-node.svg?branch=master)](https://travis-ci.org/stoe/pdfify-node) [![Known Vulnerabilities](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2/badge.svg)](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2) [![NPM version](https://img.shields.io/npm/v/pdfify-node.svg)](https://www.npmjs.com/package/pdfify-node) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 > Convert markdown files to PDF.
 
-## Install
 
+## Install
 ```
 $ npm install --global pdfify-node
 ```
@@ -14,7 +12,6 @@ _Requires [Node.js](https://nodejs.org) 6+._
 
 
 ## Usage
-
 ```shell
 Usage
   $ pdfify <source> [<destination>] [options]
@@ -32,6 +29,5 @@ Examples
 ```
 
 
-## License
-
+## License [![license](https://img.shields.io/github/license/stoe/pdfify-node.svg)](https://github.com/stoe/pdfify-node/blob/master/license)
 MIT © [Stefan Stölzle](https://github.com/stoe)

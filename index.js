@@ -75,11 +75,9 @@ pdfify
 
         opn(pdf, {
           wait: false
-        }).then(() => {
-          spinner.succeed();
-        }).catch(err => {
-          spinner.fail(err.message);
-        });
+        })
+          .then(() => spinner.succeed)
+          .catch(err => spinner.fail(err.message));
       }
     });
   })
