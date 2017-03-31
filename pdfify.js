@@ -80,12 +80,12 @@ module.exports = class PDFify {
 
       if (htmlPath) {
         fs.writeFileAsync(htmlPath, html).then(() => {
-          // log html creation
+          // Log html creation
           spinner.stopAndPersist({
             symbol: chalk.blue('ℹ'),
             text: `Debug HTML created at: ${chalk.blue(htmlPath)}`
           });
-          // restart the spinner
+          // Restart the spinner
           spinner.start();
         });
       }

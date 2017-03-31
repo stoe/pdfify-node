@@ -5,7 +5,6 @@ import path from 'path';
 import test from 'ava';
 import execa from 'execa';
 
-
 test.beforeEach(t => {
   t.context.testMd = path.resolve('./test/fixtures/test.md');
   t.context.testCss = path.resolve('./test/fixtures/test.css');
@@ -70,10 +69,7 @@ test.serial('source + css', async t => {
 test.serial('source + destination', async t => {
   t.plan(1);
 
-  await execa('./index.js', [
-    t.context.testMd,
-    t.context.fooPdf
-  ]);
+  await execa('./index.js', [t.context.testMd, t.context.fooPdf]);
   const pdfExists = fs.existsSync(t.context.fooPdf);
 
   t.true(pdfExists);
@@ -82,11 +78,7 @@ test.serial('source + destination', async t => {
 test.serial('source + destination + debug', async t => {
   t.plan(2);
 
-  await execa('./index.js', [
-    t.context.testMd,
-    t.context.fooPdf,
-    '--debug'
-  ]);
+  await execa('./index.js', [t.context.testMd, t.context.fooPdf, '--debug']);
   const pdfExists = fs.existsSync(t.context.fooPdf);
   const htmlExists = fs.existsSync(t.context.fooHtml);
 
