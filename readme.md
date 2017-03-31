@@ -1,5 +1,5 @@
 # pdfify-node
-[![npm version](https://badge.fury.io/js/pdfify-node.svg)](https://badge.fury.io/js/pdfify-node) [![Build Status](https://travis-ci.org/stoe/pdfify-node.svg?branch=master)](https://travis-ci.org/stoe/pdfify-node) [![Known Vulnerabilities](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2/badge.svg)](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2)
+[![Build Status](https://travis-ci.org/stoe/pdfify-node.svg?branch=master)](https://travis-ci.org/stoe/pdfify-node) [![Known Vulnerabilities](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2/badge.svg)](https://snyk.io/test/github/stoe/pdfify-node/1a02fcfc15cd9550c6d5629a6719324d381681e2) [![npm version](https://badge.fury.io/js/pdfify-node.svg)](https://badge.fury.io/js/pdfify-node)
 
 > Convert markdown files to PDF.
 
