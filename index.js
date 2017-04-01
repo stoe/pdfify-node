@@ -31,22 +31,29 @@ const cli = meow(
   }
 );
 
+const ora = new Ora({
+  color: 'blue'
+});
+
+const failExit = msg => {
+  ora.fail(msg);
+  process.exit(1);
+};
+
 const source = cli.input[0];
-const destination = source ?
-  cli.input[1] ||
-      path.resolve(source.slice(0, source.indexOf('.md')) + '.pdf') :
-  null;
+
+if (!source) {
+  failExit(`${chalk.dim('<source>')} must be defined`);
+}
+
+const destination = cli.input[1] ||
+  path.resolve(source.slice(0, source.indexOf('.md')) + '.pdf');
 
 const style = cli.flags.style || null;
 const header = cli.flags.header || './assets/header-default.hbs';
 const debug = cli.flags.debug ?
   destination.slice(0, destination.indexOf('.pdf')) + '.html' :
   false;
-
-if (!source) {
-  cli.showHelp();
-  process.exitCode = 1;
-}
 
 const pdfify = new PDFify({
   source: path.resolve(source),
@@ -56,10 +63,6 @@ const pdfify = new PDFify({
   height: cli.flags.height || null,
   debug,
   open: cli.flags.open || false
-});
-
-const ora = new Ora({
-  color: 'blue'
 });
 
 pdfify.makeHTML().then(html => {
