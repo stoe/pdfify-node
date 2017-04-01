@@ -108,23 +108,23 @@ module.exports = class PDFify {
 
       const destination = path.resolve(this.options.destination);
 
-      pdf
-        .create(html, pdfConfig)
-        .toFile(destination, (err, res) => {
-          if (err) {
-            reject(err);
-          }
+      pdf.create(html, pdfConfig).toFile(destination, (err, res) => {
+        if (err) {
+          reject(err);
+        }
 
-          resolve(res.filename);
+        resolve(res.filename);
 
-          if (open) {
-            opn(destination, {
-              wait: false
-            });
+        if (open) {
+          opn(destination, {
+            wait: false
+          });
 
-            ora.info(`opening ${chalk.blue(this.options.destination)} once created`);
-          }
-        });
+          ora.info(
+            `opening ${chalk.blue(this.options.destination)} once created`
+          );
+        }
+      });
     });
   }
 };
