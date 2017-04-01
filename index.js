@@ -4,8 +4,7 @@
 const path = require('path');
 const chalk = require('chalk');
 const meow = require('meow');
-const opn = require('opn');
-const ora = require('ora');
+const Ora = require('ora');
 const PDFify = require('./pdfify');
 
 const cli = meow(
@@ -32,55 +31,48 @@ const cli = meow(
   }
 );
 
+const ora = new Ora({
+  color: 'blue'
+});
+
+const failExit = msg => {
+  ora.fail(msg);
+  process.exit(1);
+};
+
 const source = cli.input[0];
-const destination = source ?
-  cli.input[1] || source.slice(0, source.indexOf('.md')) + '.pdf' :
-  null;
+
+if (!source) {
+  failExit(`${chalk.dim('<source>')} must be defined`);
+}
+
+const destination = cli.input[1] ||
+  path.resolve(source.slice(0, source.indexOf('.md')) + '.pdf');
 
 const style = cli.flags.style || null;
 const header = cli.flags.header || './assets/header-default.hbs';
-const height = cli.flags.height || null;
-const debug = cli.flags.debug || false;
-
-if (!source) {
-  cli.showHelp();
-  process.exitCode = 1;
-}
+const debug = cli.flags.debug ?
+  destination.slice(0, destination.indexOf('.pdf')) + '.html' :
+  false;
 
 const pdfify = new PDFify({
   source: path.resolve(source),
-  destination: path.resolve(destination),
+  destination,
   style: style ? path.resolve(style) : null,
   header: header ? path.resolve(header) : null,
-  height,
-  debug: debug ?
-    path.resolve(destination.slice(0, destination.indexOf('.pdf')) + '.html') :
-    null
+  height: cli.flags.height || null,
+  debug,
+  open: cli.flags.open || false
 });
 
-const spinner = ora({
-  text: `creating PDF ${chalk.blue(destination)}`,
-  color: 'blue'
-}).start();
+pdfify.makeHTML().then(html => {
+  const makePdf = pdfify.makePDF(html, ora);
 
-pdfify
-  .makeHTML()
-  .then(html => {
-    pdfify.makePDF(html, spinner).then(pdf => {
-      spinner.succeed(`PDF created at: ${chalk.blue(pdf)}`);
+  if (debug) {
+    ora.info(`created HTML ${chalk.blue(debug)}`);
+  }
 
-      if (cli.flags.open) {
-        spinner.text = `Opening: ${chalk.blue(pdf)}`;
-        spinner.start();
-
-        opn(pdf, {
-          wait: false
-        })
-          .then(() => spinner.succeed)
-          .catch(err => spinner.fail(err.message));
-      }
-    });
-  })
-  .catch(err => {
-    spinner.fail(err.message);
+  Ora.promise(makePdf, {
+    text: `creating PDF ${chalk.blue(destination)}`
   });
+});
