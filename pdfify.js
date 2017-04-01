@@ -8,6 +8,7 @@ const handlebars = require('handlebars');
 const MarkdownIt = require('markdown-it');
 const MarkdownItEmoji = require('markdown-it-emoji');
 const MarkdownItHighlightJS = require('markdown-it-highlightjs');
+const opn = require('opn');
 const pdf = require('html-pdf');
 
 const md = new MarkdownIt();
@@ -70,7 +71,7 @@ module.exports = class PDFify {
     });
   }
 
-  makePDF(html, spinner) {
+  makePDF(html, open, ora) {
     return new Promise((resolve, reject) => {
       if (!html) {
         reject(new Error('html missing'));
@@ -79,15 +80,7 @@ module.exports = class PDFify {
       const htmlPath = this.options.debug;
 
       if (htmlPath) {
-        fs.writeFileAsync(htmlPath, html).then(() => {
-          // Log html creation
-          spinner.stopAndPersist({
-            symbol: chalk.blue('ℹ'),
-            text: `Debug HTML created at: ${chalk.blue(htmlPath)}`
-          });
-          // Restart the spinner
-          spinner.start();
-        });
+        fs.writeFileAsync(htmlPath, html).then(() => {});
       }
 
       const pdfConfig = {
@@ -113,14 +106,24 @@ module.exports = class PDFify {
         }
       };
 
+      const destination = path.resolve(this.options.destination);
+
       pdf
         .create(html, pdfConfig)
-        .toFile(this.options.destination, (err, res) => {
+        .toFile(destination, (err, res) => {
           if (err) {
             reject(err);
           }
 
           resolve(res.filename);
+
+          if (open) {
+            opn(destination, {
+              wait: false
+            });
+
+            ora.info(`opening ${chalk.blue(this.options.destination)} once created`);
+          }
         });
     });
   }

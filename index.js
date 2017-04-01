@@ -4,8 +4,7 @@
 const path = require('path');
 const chalk = require('chalk');
 const meow = require('meow');
-const opn = require('opn');
-const ora = require('ora');
+const Ora = require('ora');
 const PDFify = require('./pdfify');
 
 const cli = meow(
@@ -34,13 +33,16 @@ const cli = meow(
 
 const source = cli.input[0];
 const destination = source ?
-  cli.input[1] || source.slice(0, source.indexOf('.md')) + '.pdf' :
+  cli.input[1] ||
+      path.resolve(source.slice(0, source.indexOf('.md')) + '.pdf') :
   null;
 
 const style = cli.flags.style || null;
 const header = cli.flags.header || './assets/header-default.hbs';
 const height = cli.flags.height || null;
-const debug = cli.flags.debug || false;
+const debug = cli.flags.debug ?
+  destination.slice(0, destination.indexOf('.pdf')) + '.html' :
+  false;
 
 if (!source) {
   cli.showHelp();
@@ -49,40 +51,25 @@ if (!source) {
 
 const pdfify = new PDFify({
   source: path.resolve(source),
-  destination: path.resolve(destination),
+  destination,
   style: style ? path.resolve(style) : null,
   header: header ? path.resolve(header) : null,
   height,
-  debug: debug ?
-    path.resolve(destination.slice(0, destination.indexOf('.pdf')) + '.html') :
-    null
+  debug
 });
 
-const spinner = ora({
-  text: `creating PDF ${chalk.blue(destination)}`,
+const ora = new Ora({
   color: 'blue'
-}).start();
+});
 
-pdfify
-  .makeHTML()
-  .then(html => {
-    pdfify.makePDF(html, spinner).then(pdf => {
-      spinner.succeed(`PDF created at: ${chalk.blue(pdf)}`);
+pdfify.makeHTML().then(html => {
+  const makePdf = pdfify.makePDF(html, cli.flags.open, ora);
 
-      if (cli.flags.open) {
-        spinner.text = `Opening: ${chalk.blue(pdf)}`;
-        spinner.start();
+  if (debug) {
+    ora.info(`created HTML ${chalk.blue(debug)}`);
+  }
 
-        opn(pdf, {
-          wait: false
-        }).then(() => {
-          spinner.succeed();
-        }).catch(err => {
-          spinner.fail(err.message);
-        });
-      }
-    });
-  })
-  .catch(err => {
-    spinner.fail(err.message);
+  Ora.promise(makePdf, {
+    text: `creating PDF ${chalk.blue(destination)}`
   });
+});
