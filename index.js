@@ -39,7 +39,6 @@ const destination = source ?
 
 const style = cli.flags.style || null;
 const header = cli.flags.header || './assets/header-default.hbs';
-const height = cli.flags.height || null;
 const debug = cli.flags.debug ?
   destination.slice(0, destination.indexOf('.pdf')) + '.html' :
   false;
@@ -54,8 +53,9 @@ const pdfify = new PDFify({
   destination,
   style: style ? path.resolve(style) : null,
   header: header ? path.resolve(header) : null,
-  height,
-  debug
+  height: cli.flags.height || null,
+  debug,
+  open: cli.flags.open || false
 });
 
 const ora = new Ora({
@@ -63,7 +63,7 @@ const ora = new Ora({
 });
 
 pdfify.makeHTML().then(html => {
-  const makePdf = pdfify.makePDF(html, cli.flags.open, ora);
+  const makePdf = pdfify.makePDF(html, ora);
 
   if (debug) {
     ora.info(`created HTML ${chalk.blue(debug)}`);

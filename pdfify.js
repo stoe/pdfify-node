@@ -71,7 +71,7 @@ module.exports = class PDFify {
     });
   }
 
-  makePDF(html, open, ora) {
+  makePDF(html, ora) {
     return new Promise((resolve, reject) => {
       if (!html) {
         reject(new Error('html missing'));
@@ -115,7 +115,7 @@ module.exports = class PDFify {
 
         resolve(res.filename);
 
-        if (open) {
+        if (this.options.open) {
           opn(destination, {
             wait: false
           });
