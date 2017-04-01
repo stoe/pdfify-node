@@ -3,23 +3,16 @@
 
 const path = require('path');
 const gh = require('gh-got');
-const ora = require('ora');
+const Ora = require('ora');
 const writeJsonFile = require('write-json-file');
 
-const spinner = ora('getting emojis 😄').start();
-
-gh('emojis').then(res => {
-  const emojis = res.body;
-  const file = path.resolve(__dirname, '../data/emojis.json');
-
-  writeJsonFile(file, emojis, {
+const emojis = gh('emojis').then(res => {
+  writeJsonFile(path.resolve(__dirname, '../data/emojis.json'), res.body, {
     indent: 2,
     sortKeys: true
-  })
-    .then(res => {
-      spinner.succeed(`👍`);
-    })
-    .catch(err => {
-      spinner.fail(err.message);
-    });
+  });
+});
+
+Ora.promise(emojis, {
+  text: 'getting emojis 😄'
 });
