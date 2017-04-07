@@ -16,6 +16,7 @@ const cli = meow(
     --header  A full path to a the Handlebars (.hbs|.html) file which will be your header.
     --height  The height of the header section in mm. ${chalk.dim('Might take some fiddling to get just right')}.
     --open    Open the generated PDF.
+    --repeat  Repeat the header on every page, if omitted add header to first page only.
     --style   A full path to a single css stylesheet which is applied last to the PDF.
 
   ${chalk.bold('Examples')}
@@ -62,7 +63,8 @@ const pdfify = new PDFify({
   header: header ? path.resolve(header) : null,
   height: cli.flags.height || null,
   debug,
-  open: cli.flags.open || false
+  open: cli.flags.open || false,
+  repeat: cli.flags.repeat || false
 });
 
 pdfify.makeHTML().then(html => {

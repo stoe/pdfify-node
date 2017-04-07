@@ -57,11 +57,19 @@ module.exports = class PDFify {
         .spread((markdown, layout) => {
           const css = this.makeCSS();
           const body = md.render(markdown);
-
-          const html = handlebars.compile(layout)({
+          const config = {
             css: new handlebars.SafeString(css),
             body: new handlebars.SafeString(body)
-          });
+          };
+
+          if (this.options.repeat === false) {
+            config.header = new handlebars.SafeString(fs.readFileSync(this.options.header, 'utf8'));
+            config.margin = this.options.height ?
+              `${this.options.height * 3.7795275590551}px` :
+              '50px';
+          }
+
+          const html = handlebars.compile(layout)(config);
 
           resolve(html);
         })
@@ -86,12 +94,6 @@ module.exports = class PDFify {
       const pdfConfig = {
         format: 'A4',
         base: path.resolve('file://', __dirname, '/assets/'),
-        header: {
-          height: this.options.height ? `${this.options.height}mm` : '20mm',
-          contents: this.options.header ?
-            fs.readFileSync(this.options.header, 'utf8') :
-            null
-        },
         footer: {
           height: '10mm',
           contents: {
@@ -105,6 +107,13 @@ module.exports = class PDFify {
           right: '25mm'
         }
       };
+
+      if (this.options.repeat && this.options.header) {
+        pdfConfig.header = {
+          height: this.options.height ? `${this.options.height}mm` : '20mm',
+          contents: fs.readFileSync(this.options.header, 'utf8')
+        };
+      }
 
       const destination = path.resolve(this.options.destination);
 
