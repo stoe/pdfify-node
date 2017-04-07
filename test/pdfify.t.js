@@ -76,7 +76,7 @@ test.serial('source + header', async t => {
   const html = fs.readFileSync(t.context.testHtml, 'utf8');
 
   t.true(
-    html.indexOf('<header class="test"></header>') > 0,
+    html.indexOf('<header class="test">foobar</header>') > 0,
     '<header> not found'
   );
 });
@@ -87,7 +87,7 @@ test.serial('source + header + repeat', async t => {
   );
   const html = fs.readFileSync(t.context.testHtml, 'utf8');
 
-  t.true(html.indexOf('<header class="test"></header>') < 0, '<header> found');
+  t.true(html.indexOf('<header class="test">foobar</header>') < 0, '<header> found');
 });
 
 test.serial('source + destination', async t => {
