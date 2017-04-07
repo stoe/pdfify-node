@@ -8,6 +8,7 @@ import execa from 'execa';
 test.beforeEach(t => {
   t.context.testMd = path.resolve('./test/fixtures/test.md');
   t.context.testCss = path.resolve('./test/fixtures/test.css');
+  t.context.testHeaderHbs = path.resolve('./test/fixtures/test.header.hbs');
 
   t.context.testPdf = path.resolve('./test/fixtures/test.pdf');
   t.context.testHtml = path.resolve('./test/fixtures/test.html');
@@ -64,6 +65,26 @@ test.serial('source + css', async t => {
   const html = fs.readFileSync(t.context.testHtml, 'utf8');
 
   t.true(html.indexOf('color: red !important;') > 0, true);
+});
+
+test.serial('source + header', async t => {
+  t.plan(1);
+
+  await execa.shell(
+    `node ./index.js ${t.context.testMd} --header ${t.context.testHeaderHbs} --debug`
+  );
+  const html = fs.readFileSync(t.context.testHtml, 'utf8');
+
+  t.true(html.indexOf('<header class="test"></header>') > 0, '<header> not found');
+});
+
+test.serial('source + header + repeat', async t => {
+  await execa.shell(
+    `node ./index.js ${t.context.testMd} --header ${t.context.testHeaderHbs} --repeat --debug`
+  );
+  const html = fs.readFileSync(t.context.testHtml, 'utf8');
+
+  t.true(html.indexOf('<header class="test"></header>') < 0, '<header> found');
 });
 
 test.serial('source + destination', async t => {
