@@ -1,6 +1,6 @@
 {
   "name": "pdfify-node",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Convert markdown files to PDF.",
   "keywords": [],
   "author": {
@@ -29,31 +29,31 @@
     "postinstall": "npm run scss-compile"
   },
   "dependencies": {
-    "bluebird": "latest",
-    "chalk": "latest",
-    "gh-got": "latest",
-    "handlebars": "latest",
-    "highlight.js": "latest",
-    "html-pdf": "latest",
-    "markdown-it": "latest",
-    "markdown-it-emoji": "latest",
-    "markdown-it-highlightjs": "latest",
-    "meow": "latest",
-    "node-sass": "latest",
-    "opn": "latest",
-    "ora": "latest",
-    "write-json-file": "latest"
+    "bluebird": "^3.5.0",
+    "chalk": "^1.1.3",
+    "gh-got": "^5.0.0",
+    "handlebars": "^4.0.6",
+    "highlight.js": "^9.10.0",
+    "html-pdf": "^2.1.0",
+    "markdown-it": "^8.3.1",
+    "markdown-it-emoji": "^1.3.0",
+    "markdown-it-highlightjs": "^3.0.0",
+    "meow": "^3.7.0",
+    "node-sass": "^4.5.2",
+    "opn": "^4.0.2",
+    "ora": "^1.2.0",
+    "write-json-file": "^2.0.0"
   },
   "devDependencies": {
-    "ava": "latest",
-    "eslint": "latest",
-    "eslint-plugin-import": "latest",
-    "eslint-plugin-node": "latest",
-    "eslint-plugin-promise": "latest",
-    "eslint-plugin-standard": "latest",
-    "execa": "latest",
-    "snyk": "latest",
-    "xo": "latest"
+    "ava": "^0.19.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "execa": "^0.6.3",
+    "snyk": "^1.27.1",
+    "xo": "^0.18.1"
   },
   "ava": {
     "files": [
