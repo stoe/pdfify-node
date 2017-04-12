@@ -24,9 +24,7 @@
   "scripts": {
     "test": "xo && ava --verbose",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect",
-    "scss-compile": "node node_modules/.bin/node-sass --include-path scss --output-style compressed scss/style.scss assets/style.css",
-    "postinstall": "npm run scss-compile"
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
