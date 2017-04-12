@@ -25,7 +25,7 @@
     "test": "xo && ava --verbose",
     "snyk-protect": "snyk protect",
     "prepublish": "npm run snyk-protect",
-    "scss-compile": "node-sass --include-path scss --output-style compressed ./scss/style.scss ./assets/style.css",
+    "scss-compile": "node node_modules/.bin/node-sass --include-path scss --output-style compressed scss/style.scss assets/style.css",
     "postinstall": "npm run scss-compile"
   },
   "dependencies": {
