@@ -6,4 +6,4 @@ cd "$(dirname "$0")/.."
 
 set -e
 
-yarn install
+npm install
