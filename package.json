@@ -9,10 +9,10 @@
     "url": "stefan.stoelzle.me"
   },
   "license": "MIT",
-  "homepage": "https://github.com/stoe/pdfify-node#readme",
+  "homepage": "https://github.com/stoelzle/pdfify-node#readme",
   "repository": "stoe/pdfify-node",
   "bugs": {
-    "url": "https://github.com/stoe/pdfify-node/issues"
+    "url": "https://github.com/stoelzle/pdfify-node/issues"
   },
   "engines": {
     "node": ">=6"
