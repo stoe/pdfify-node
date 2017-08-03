@@ -9,14 +9,11 @@ engines:
     config:
       languages:
       - javascript
-  scss-lint:
-    enabled: true
   shellcheck:
     enabled: true
 ratings:
   paths:
   - "script/**"
-  - "scss/**.scss"
   - "**.js"
 exclude_paths:
 - assets/
