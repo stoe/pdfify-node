@@ -28,30 +28,30 @@
     "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
-    "bluebird": "^3.5.0",
+    "bluebird": "^3.5.1",
     "chalk": "^1.1.3",
     "gh-got": "^5.0.0",
-    "handlebars": "^4.0.6",
+    "handlebars": "^4.0.11",
     "highlight.js": "^9.10.0",
-    "html-pdf": "^2.1.0",
-    "markdown-it": "^8.3.1",
+    "html-pdf": "^2.2.0",
+    "markdown-it": "^8.4.0",
     "markdown-it-emoji": "^1.3.0",
     "markdown-it-highlightjs": "^3.0.0",
     "meow": "^3.7.0",
     "node-sass": "^4.5.2",
     "opn": "^4.0.2",
     "ora": "^1.2.0",
-    "write-json-file": "^2.0.0",
-    "snyk": "^1.41.1"
+    "write-json-file": "^2.3.0"
   },
   "devDependencies": {
     "ava": "^0.19.0",
     "eslint": "^3.19.0",
-    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^4.2.2",
-    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "execa": "^0.6.3",
+    "snyk": "^1.46.0",
     "xo": "^0.18.1"
   },
   "ava": {
