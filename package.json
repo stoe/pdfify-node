@@ -1,6 +1,6 @@
 {
   "name": "pdfify-node",
-  "version": "2.4.0-0",
+  "version": "2.4.0",
   "description": "Convert markdown files to PDF.",
   "keywords": [],
   "author": {
