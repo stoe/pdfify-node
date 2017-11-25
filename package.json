@@ -23,7 +23,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "snyk test && xo && ava --verbose",
+    "test": "snyk test && xo && ava -v",
     "snyk-protect": "snyk protect",
     "prepare": "npm run snyk-protect"
   },
