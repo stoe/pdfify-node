@@ -15,22 +15,14 @@ notifications:
   email:
     on_success: never
     on_failure: change
-  slack:
-    template:
-      - "%{repository_slug}@%{branch} (%{commit}): %{result} in %{duration}"
-      - "%{build_url}"
-    rooms:
-      secure: chOLjzqTBDVwMGAns/Svz+ZOfvoXAbxuZdWjGhJqAxFCjhDWVVq83/Fz6sYbpfpv6wM5/X7xLussTDqayqaLd/yNTMS82AELbA3rU+KuXEZFu87Jpyzw9llwfW1FIb2r8SMsNL9RBfbG4nT0kj+whCDISp6wWi9QsaGtbCwIJzPKAxFTYtG7NpDVYmfGuyNEUhxIJYeHFczjaGev66TTrIPJyOtWPBv6gOv8kbASERJKz7SuWxQZbPcVY2Hi3b6WRVuBzJGMhfDeXB6hoarDxkn7NG/sLDE3tJja903cGsF9wh0YlKrmwG8R/GoVETY5lu/J4dcW3pR5DPRFeLRsM/eQ8uA3982qEOW472kUtUiV0ND+SOrf5wwi9pksiOwPMAFARUfQshE9dI3Q5j1oNc3eZhiYrPDsg2o88UlO6sCmvNXlxVa/4oaku/piaqOdIGdnXQYA9RFyrGpFZJyursE6TsJAsLBHjD4aSZL4yvcwNye4+ZkMUqSGPZf17lQq7tXi+aib80qOBLhFrl1c7I3QuIGG03gXIz5zcDTduY0rwmG2ET2SVSlmNqo4IxUhA5mQCKRFEFn7gqx1FAr3J5IJLn8IIrLu1MlaIhfmqgoR6YUhASxP9M/D/n16u4vv1GUFvRzlg9/R/pw+21ZZ4Q2+Erw5Apyhx5mueWYVE34=
-    on_success: change
-    on_failure: always
-
-env:
-  global:
-    secure: ed/nPO7W2Ji2Spnuf7LfvtU/yc9nq4jVJZ+8jBqLB6mKeso42oHPbBvnjb9M6AsaK8bN0I8Q5tib8zFulFrujn43P/gqtuT7LWzmofeBb49IQbH/wS6LoEE6/PCZkiuwkB4Ujm5k4emBtjn4cYAbOon+NR+KBisOGnHO9oQpBfcQVsR5wt4sdYgJX3+tc134QNSZ3u3FjV1TgPSvjC8bXK+Gf197SqOh9rXls/cmw0JLuz2ajNrQ3fOqhIbcp3WBs5aBvedYZzPfSXNpLmxPEvYZOJd2mBfFnUGJmD+SppEfbOykolNynddFKEFMGsLNeU+RycJgnHOCtTC9AR450O7bFIAAOiDerikFwrQ4KdsZa09o7tG8ZY8dDAegRBPC2NEr/kopDSYn1vbenA3r3tlKgEkiEwuH3na3pxsee++Xa2Yw3M5H+W+cd+IdCuyzdZLRLN1WkbbQumrlFe3L/40F+Nomvun98Xa+UTrXqha2IUOk2dtN92BcxYEtG7x9+Strr/RcLd5F1y0HAR0mL6QpeZ5ZEphpRPAFLG3gd70pnQLQ8K2rwzQajfi4CoorEv4twW3Ddrnc7xQRCl72Lfu4xWaY4MTqpJUFxctdMQIpa/X3cX2St6xFZJlskvnWU87jGxM06+wM4cvIhl3A06ZycQJ8fnX/Kn4QZkoaMAc=
 
 cache:
   directories:
     - node_modules
+
+env:
+  global:
+    secure: ed/nPO7W2Ji2Spnuf7LfvtU/yc9nq4jVJZ+8jBqLB6mKeso42oHPbBvnjb9M6AsaK8bN0I8Q5tib8zFulFrujn43P/gqtuT7LWzmofeBb49IQbH/wS6LoEE6/PCZkiuwkB4Ujm5k4emBtjn4cYAbOon+NR+KBisOGnHO9oQpBfcQVsR5wt4sdYgJX3+tc134QNSZ3u3FjV1TgPSvjC8bXK+Gf197SqOh9rXls/cmw0JLuz2ajNrQ3fOqhIbcp3WBs5aBvedYZzPfSXNpLmxPEvYZOJd2mBfFnUGJmD+SppEfbOykolNynddFKEFMGsLNeU+RycJgnHOCtTC9AR450O7bFIAAOiDerikFwrQ4KdsZa09o7tG8ZY8dDAegRBPC2NEr/kopDSYn1vbenA3r3tlKgEkiEwuH3na3pxsee++Xa2Yw3M5H+W+cd+IdCuyzdZLRLN1WkbbQumrlFe3L/40F+Nomvun98Xa+UTrXqha2IUOk2dtN92BcxYEtG7x9+Strr/RcLd5F1y0HAR0mL6QpeZ5ZEphpRPAFLG3gd70pnQLQ8K2rwzQajfi4CoorEv4twW3Ddrnc7xQRCl72Lfu4xWaY4MTqpJUFxctdMQIpa/X3cX2St6xFZJlskvnWU87jGxM06+wM4cvIhl3A06ZycQJ8fnX/Kn4QZkoaMAc=
 
 install: 'npm install'
 before_script: 'snyk auth $SNYK_TOKEN'

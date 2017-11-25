@@ -5,5 +5,5 @@ ignore:
   'npm:tunnel-agent:20170305':
     - node-sass > request > tunnel-agent:
         reason: None given
-        expires: '2017-12-25T12:32:23.064Z'
+        expires: '2017-12-25T15:16:33.265Z'
 patch: {}
