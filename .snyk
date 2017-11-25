@@ -2,15 +2,8 @@
 version: v1.7.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  'npm:concat-stream:20160901':
-    - html-pdf > phantomjs-prebuilt > extract-zip > concat-stream:
+  'npm:tunnel-agent:20170305':
+    - node-sass > request > tunnel-agent:
         reason: None given
-        expires: '2017-06-02T09:30:15.910Z'
-# patches apply the minimum changes required to fix a vulnerability
-patch:
-  'npm:debug:20170905':
-    - html-pdf > phantomjs-prebuilt > extract-zip > debug:
-        patched: '2017-09-27T09:17:59.062Z'
-  'npm:ms:20170412':
-    - html-pdf > phantomjs-prebuilt > extract-zip > debug > ms:
-        patched: '2017-09-27T09:17:59.062Z'
+        expires: '2017-12-25T12:32:23.064Z'
+patch: {}
