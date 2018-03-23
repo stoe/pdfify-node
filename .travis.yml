@@ -20,10 +20,5 @@ cache:
   directories:
     - node_modules
 
-env:
-  global:
-    secure: ed/nPO7W2Ji2Spnuf7LfvtU/yc9nq4jVJZ+8jBqLB6mKeso42oHPbBvnjb9M6AsaK8bN0I8Q5tib8zFulFrujn43P/gqtuT7LWzmofeBb49IQbH/wS6LoEE6/PCZkiuwkB4Ujm5k4emBtjn4cYAbOon+NR+KBisOGnHO9oQpBfcQVsR5wt4sdYgJX3+tc134QNSZ3u3FjV1TgPSvjC8bXK+Gf197SqOh9rXls/cmw0JLuz2ajNrQ3fOqhIbcp3WBs5aBvedYZzPfSXNpLmxPEvYZOJd2mBfFnUGJmD+SppEfbOykolNynddFKEFMGsLNeU+RycJgnHOCtTC9AR450O7bFIAAOiDerikFwrQ4KdsZa09o7tG8ZY8dDAegRBPC2NEr/kopDSYn1vbenA3r3tlKgEkiEwuH3na3pxsee++Xa2Yw3M5H+W+cd+IdCuyzdZLRLN1WkbbQumrlFe3L/40F+Nomvun98Xa+UTrXqha2IUOk2dtN92BcxYEtG7x9+Strr/RcLd5F1y0HAR0mL6QpeZ5ZEphpRPAFLG3gd70pnQLQ8K2rwzQajfi4CoorEv4twW3Ddrnc7xQRCl72Lfu4xWaY4MTqpJUFxctdMQIpa/X3cX2St6xFZJlskvnWU87jGxM06+wM4cvIhl3A06ZycQJ8fnX/Kn4QZkoaMAc=
-
 install: 'npm install'
-before_script: 'snyk auth $SNYK_TOKEN'
 script: 'npm test'
