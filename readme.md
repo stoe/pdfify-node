@@ -30,5 +30,5 @@ Examples
 ```
 
 
-## License [![license](https://img.shields.io/github/license/stoelzle/pdfify-node.svg)](https://github.com/stoelzle/pdfify-node/blob/master/license)
+## License [![license](https://img.shields.io/github/license/stoelzle/pdfify-node.svg)](https://github.com/stoelzle/pdfify-node/blob/master/license) [![Greenkeeper badge](https://badges.greenkeeper.io/stoelzle/pdfify-node.svg)](https://greenkeeper.io/)
 MIT © [Stefan Stölzle](https://github.com/stoe)
