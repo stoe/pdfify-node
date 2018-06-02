@@ -3,14 +3,12 @@
 
 > Convert markdown files to PDF.
 
-
 ## Install
 ```
 $ npm install --global pdfify-node
 ```
 
 _Requires [Node.js](https://nodejs.org) 6+._
-
 
 ## Usage
 ```shell
@@ -28,7 +26,6 @@ Examples
   $ pdfify foo.md
   $ pdfify foo.md foo.pdf --header header.hbs --height 42 --style style.css
 ```
-
 
 ## License [![license](https://img.shields.io/github/license/stoelzle/pdfify-node.svg)](https://github.com/stoelzle/pdfify-node/blob/master/license)
 MIT © [Stefan Stölzle](https://github.com/stoe)
