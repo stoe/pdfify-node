@@ -73,8 +73,8 @@ module.exports = class PDFify {
 
           resolve(html);
         })
-        .catch(err => {
-          reject(err);
+        .catch(error => {
+          reject(error);
         });
     });
   }
