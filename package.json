@@ -42,14 +42,14 @@
     "write-json-file": "^3.0.0"
   },
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^1.2.1",
     "eslint": "^5.1.0",
     "eslint-plugin-import": "^2.13.0",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-standard": "^4.0.0",
     "execa": "^1.0.0",
-    "xo": "^0.23.0"
+    "xo": "^0.24.0"
   },
   "resolutions": {
     "eslint-scope": "3.7.1"
