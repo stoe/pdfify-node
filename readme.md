@@ -9,7 +9,7 @@
 $ npm install --global @stoelzle/pdfify-node
 ```
 
-_Requires [Node.js](https://nodejs.org) 6+._
+_Requires [Node.js](https://nodejs.org) 10+._
 
 ## Usage
 ```shell
