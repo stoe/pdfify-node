@@ -1,12 +1,12 @@
 {
   "name": "@stoe/pdfify-node",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Convert markdown files to PDF.",
   "keywords": [],
   "author": {
     "name": "Stefan Stölzle",
-    "email": "stefan@github.com",
-    "url": "stefan.stoelzle.me"
+    "email": "stoe@github.com",
+    "url": "https://github.com/stoe"
   },
   "license": "MIT",
   "homepage": "https://github.com/stoelzle/pdfify-node#readme",
