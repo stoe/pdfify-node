@@ -8,7 +8,7 @@ const handlebars = require('handlebars');
 const MarkdownIt = require('markdown-it');
 const MarkdownItEmoji = require('markdown-it-emoji');
 const MarkdownItHighlightJS = require('markdown-it-highlightjs');
-const opn = require('opn');
+const opn = require('open');
 const pdf = require('html-pdf');
 
 const md = new MarkdownIt();
@@ -19,7 +19,9 @@ md.renderer.rules.emoji = (token, idx) => {
   const emoji = token[idx];
   const emojiImgPath = emojis[emoji.markup];
 
-  return `<img class="emoji-img emoji" alt="${emoji.content}" title=":${emoji.markup}:" src="${emojiImgPath}"/>`;
+  return `<img class="emoji-img emoji" alt="${emoji.content}" title=":${
+    emoji.markup
+  }:" src="${emojiImgPath}"/>`;
 };
 
 Promise.promisifyAll(fs); // eslint-disable-line no-use-extend-native/no-use-extend-native
@@ -63,7 +65,9 @@ module.exports = class PDFify {
           };
 
           if (this.options.repeat === false) {
-            config.header = new handlebars.SafeString(fs.readFileSync(this.options.header, 'utf8'));
+            config.header = new handlebars.SafeString(
+              fs.readFileSync(this.options.header, 'utf8')
+            );
             config.margin = this.options.height ?
               `${this.options.height * 3.7795275590551}px` :
               '50px';
@@ -97,7 +101,8 @@ module.exports = class PDFify {
         footer: {
           height: '10mm',
           contents: {
-            default: '<div class="footer"><span class="page">{{page}}</span>/<span class="pages">{{pages}}</span></div>'
+            default:
+              '<div class="footer"><span class="page">{{page}}</span>/<span class="pages">{{pages}}</span></div>'
           }
         },
         border: {
