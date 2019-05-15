@@ -19,13 +19,11 @@ md.renderer.rules.emoji = (token, idx) => {
   const emoji = token[idx];
   const emojiImgPath = emojis[emoji.markup];
 
-  return `<img class="emoji-img emoji" alt="${emoji.content}" title=":${
-    emoji.markup
-  }:" src="${emojiImgPath}"/>`;
+  return `<img class="emoji-img emoji" alt="${emoji.content}" title=":${emoji.markup}:" src="${emojiImgPath}"/>`;
 };
 
-Promise.promisifyAll(fs); // eslint-disable-line no-use-extend-native/no-use-extend-native
-Promise.promisifyAll(md); // eslint-disable-line no-use-extend-native/no-use-extend-native
+Promise.promisifyAll(fs);
+Promise.promisifyAll(md);
 
 module.exports = class PDFify {
   constructor(options) {
@@ -52,10 +50,7 @@ module.exports = class PDFify {
 
   makeHTML() {
     return new Promise((resolve, reject) => {
-      Promise.all([
-        fs.readFileAsync(this.options.source, 'utf8'),
-        fs.readFileAsync(this.layout, 'utf8')
-      ])
+      Promise.all([fs.readFileAsync(this.options.source, 'utf8'), fs.readFileAsync(this.layout, 'utf8')])
         .spread((markdown, layout) => {
           const css = this.makeCSS();
           const body = md.render(markdown);
@@ -65,12 +60,8 @@ module.exports = class PDFify {
           };
 
           if (this.options.repeat === false) {
-            config.header = new handlebars.SafeString(
-              fs.readFileSync(this.options.header, 'utf8')
-            );
-            config.margin = this.options.height ?
-              `${this.options.height * 3.7795275590551}px` :
-              '50px';
+            config.header = new handlebars.SafeString(fs.readFileSync(this.options.header, 'utf8'));
+            config.margin = this.options.height ? `${this.options.height * 3.7795275590551}px` : '50px';
           }
 
           const html = handlebars.compile(layout)(config);
@@ -101,8 +92,7 @@ module.exports = class PDFify {
         footer: {
           height: '10mm',
           contents: {
-            default:
-              '<div class="footer"><span class="page">{{page}}</span>/<span class="pages">{{pages}}</span></div>'
+            default: '<div class="footer"><span class="page">{{page}}</span>/<span class="pages">{{pages}}</span></div>'
           }
         },
         border: {
@@ -134,9 +124,7 @@ module.exports = class PDFify {
             wait: false
           });
 
-          ora.info(
-            `opening ${chalk.blue(this.options.destination)} once created`
-          );
+          ora.info(`opening ${chalk.blue(this.options.destination)} once created`);
         }
       });
     });

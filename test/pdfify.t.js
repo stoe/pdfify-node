@@ -18,12 +18,7 @@ test.beforeEach(t => {
 });
 
 test.afterEach(t => {
-  const files = [
-    t.context.testPdf,
-    t.context.testHtml,
-    t.context.fooPdf,
-    t.context.fooHtml
-  ];
+  const files = [t.context.testPdf, t.context.testHtml, t.context.fooPdf, t.context.fooHtml];
 
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
@@ -59,9 +54,7 @@ test.serial('source + debug', async t => {
 test.serial('source + css', async t => {
   t.plan(1);
 
-  await execa.shell(
-    `node ./index.js ${t.context.testMd} --style ${t.context.testCss} --debug`
-  );
+  await execa.shell(`node ./index.js ${t.context.testMd} --style ${t.context.testCss} --debug`);
   const html = fs.readFileSync(t.context.testHtml, 'utf8');
 
   t.true(html.indexOf('color: red !important;') > 0, 'CSS not found');
@@ -70,21 +63,14 @@ test.serial('source + css', async t => {
 test.serial('source + header', async t => {
   t.plan(1);
 
-  await execa.shell(
-    `node ./index.js ${t.context.testMd} --header ${t.context.testHeaderHbs} --debug`
-  );
+  await execa.shell(`node ./index.js ${t.context.testMd} --header ${t.context.testHeaderHbs} --debug`);
   const html = fs.readFileSync(t.context.testHtml, 'utf8');
 
-  t.true(
-    html.indexOf('<header class="test">foobar</header>') > 0,
-    '<header> not found'
-  );
+  t.true(html.indexOf('<header class="test">foobar</header>') > 0, '<header> not found');
 });
 
 test.serial('source + header + repeat', async t => {
-  await execa.shell(
-    `node ./index.js ${t.context.testMd} --header ${t.context.testHeaderHbs} --repeat --debug`
-  );
+  await execa.shell(`node ./index.js ${t.context.testMd} --header ${t.context.testHeaderHbs} --repeat --debug`);
   const html = fs.readFileSync(t.context.testHtml, 'utf8');
 
   t.true(html.indexOf('<header class="test">foobar</header>') < 0, '<header> found');
@@ -113,9 +99,7 @@ test.serial('source + destination + debug', async t => {
 test.serial('source + destination + css', async t => {
   t.plan(1);
 
-  await execa.shell(
-    `node ./index.js ${t.context.testMd} ${t.context.fooPdf} --style ${t.context.testCss} --debug`
-  );
+  await execa.shell(`node ./index.js ${t.context.testMd} ${t.context.fooPdf} --style ${t.context.testCss} --debug`);
   const html = fs.readFileSync(t.context.fooHtml, 'utf8');
 
   t.true(html.indexOf('color: red !important;') > 0, 'CSS missing');

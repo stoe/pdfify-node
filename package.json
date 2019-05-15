@@ -1,8 +1,12 @@
 {
   "name": "@stoe/pdfify-node",
-  "version": "2.6.0",
+  "version": "3.0.0",
   "description": "Convert markdown files to PDF.",
-  "keywords": [],
+  "keywords": [
+    "markdown",
+    "pdf",
+    "markdown-to-pdf"
+  ],
   "author": {
     "name": "Stefan Stölzle",
     "email": "stoe@github.com",
@@ -26,7 +30,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "xo && ava -v"
+    "lint": "github-lint",
+    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
+    "test": "ava -v"
   },
   "dependencies": {
     "bluebird": "^3.5.4",
@@ -40,19 +46,15 @@
     "markdown-it-highlightjs": "^3.0.0",
     "meow": "^5.0.0",
     "node-sass": "^4.12.0",
-    "open": "^6.0.0",
+    "open": "^6.3.0",
     "ora": "^3.4.0",
     "write-json-file": "^3.2.0"
   },
   "devDependencies": {
     "ava": "^1.4.1",
     "eslint": "^5.16.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-node": "^9.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "execa": "^1.0.0",
-    "xo": "^0.24.0"
+    "eslint-plugin-github": "^2.0.0",
+    "execa": "^1.0.0"
   },
   "resolutions": {
     "eslint-scope": "^3.7.1",
@@ -61,12 +63,6 @@
   "ava": {
     "files": [
       "test/*.t.js"
-    ]
-  },
-  "xo": {
-    "space": 2,
-    "ignores": [
-      "assets/"
     ]
   }
 }

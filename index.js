@@ -47,14 +47,11 @@ if (!source) {
   failExit(`${chalk.dim('<source>')} must be defined`);
 }
 
-const destination = cli.input[1] ||
-  path.resolve(source.slice(0, source.indexOf('.md')) + '.pdf');
+const destination = cli.input[1] || path.resolve(`${source.slice(0, source.indexOf('.md'))}.pdf`);
 
 const style = cli.flags.style || null;
 const header = cli.flags.header || './assets/header-default.hbs';
-const debug = cli.flags.debug ?
-  destination.slice(0, destination.indexOf('.pdf')) + '.html' :
-  false;
+const debug = cli.flags.debug ? `${destination.slice(0, destination.indexOf('.pdf'))}.html` : false;
 
 const pdfify = new PDFify({
   source: path.resolve(source),
