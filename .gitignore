@@ -1,3 +1,4 @@
+!.npmrc
 *.pdf
 *.html
 header.hbs
