@@ -50,7 +50,7 @@
     "write-json-file": "^3.2.0"
   },
   "devDependencies": {
-    "ava": "^1.4.1",
+    "ava": "^2.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-github": "^2.0.0",
     "execa": "^1.0.0"
