@@ -13,10 +13,10 @@
     "url": "https://github.com/stoe"
   },
   "license": "MIT",
-  "homepage": "https://github.com/stoelzle/pdfify-node#readme",
-  "repository": "git@github.com:stoelzle/pdfify-node.git",
+  "homepage": "https://github.com/stoe/pdfify-node#readme",
+  "repository": "git@github.com:stoe/pdfify-node.git",
   "bugs": {
-    "url": "https://github.com/stoelzle/pdfify-node/issues"
+    "url": "https://github.com/stoe/pdfify-node/issues"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
